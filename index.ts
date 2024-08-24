@@ -55,10 +55,9 @@ untilAppear(() => document.getElementById("comments")).then((comments) => {
     for (const comment of comments!.querySelectorAll(
       "ytd-comment-view-model #content .yt-core-attributed-string",
     )) {
-      let lang: string | undefined;
       if (
         !visitedComments.has(comment) &&
-        (lang = /```(\S+)\n/.exec(comment.textContent!)?.[1])
+        /```\S+\n/.test(comment.textContent!)
       ) {
         visitedComments.add(comment);
         if (!isCSSLoaded) {
