@@ -1,0 +1,11 @@
+// ==UserScript==
+// @name         yt-code-highlighter
+// @namespace    https://greasyfork.org/ru/users/901750-gooseob
+// @version      {version}
+// @description  Highlight code in YouTube comments
+// @author       GooseOb
+// @license      MIT
+// @require      https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js
+// @match        https://www.youtube.com/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=youtube.com
+// ==/UserScript==
