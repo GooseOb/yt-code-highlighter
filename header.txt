@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         yt-code-highlighter
+// @name         YouTube Code Highlighter
 // @namespace    https://greasyfork.org/ru/users/901750-gooseob
 // @version      {version}
 // @description  Highlight code in YouTube comments
