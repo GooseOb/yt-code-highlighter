@@ -26,7 +26,7 @@ const untilAppear = <T>(getItem: () => T, msToWait?: number) =>
 
 untilAppear(() => document.getElementById("comments")).then((comments) => {
   let isCSSLoaded = false;
-  const visited = new Set();
+  const visitedComments = new Set();
 
   const loadCSS = () => {
     fetch("https://cdn.jsdelivr.net/npm/highlight.js/styles/atom-one-dark.css")
@@ -37,7 +37,7 @@ untilAppear(() => document.getElementById("comments")).then((comments) => {
       });
   };
 
-  const _formatter = {
+  const _highlighter = {
     createHTML: (code: string) =>
       code.replace(
         /```(\S+)\n(.+?)```/gs,
@@ -46,26 +46,26 @@ untilAppear(() => document.getElementById("comments")).then((comments) => {
       ),
   };
 
-  const formatter =
+  const highlighter =
     window.trustedTypes && window.trustedTypes.createPolicy
-      ? window.trustedTypes.createPolicy("highlightedCode", _formatter)
-      : _formatter;
+      ? window.trustedTypes.createPolicy("highlightedCode", _highlighter)
+      : _highlighter;
 
   setInterval(() => {
-    for (const elem of comments!.querySelectorAll(
+    for (const comment of comments!.querySelectorAll(
       "ytd-comment-view-model #content .yt-core-attributed-string",
     )) {
       let lang: string | undefined;
       if (
-        !visited.has(elem) &&
-        (lang = /```(\S+)\n/.exec(elem.textContent!)?.[1])
+        !visitedComments.has(comment) &&
+        (lang = /```(\S+)\n/.exec(comment.textContent!)?.[1])
       ) {
-        visited.add(elem);
+        visitedComments.add(comment);
         if (!isCSSLoaded) {
           loadCSS();
           isCSSLoaded = true;
         }
-        elem.innerHTML = formatter.createHTML(elem.textContent!);
+        comment.innerHTML = highlighter.createHTML(comment.textContent!);
       }
     }
   }, 3000);
