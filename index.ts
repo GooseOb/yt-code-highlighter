@@ -47,9 +47,8 @@ untilAppear(() => document.getElementById("comments")).then((comments) => {
   };
 
   const highlighter =
-    window.trustedTypes && window.trustedTypes.createPolicy
-      ? window.trustedTypes.createPolicy("highlightedCode", _highlighter)
-      : _highlighter;
+    window.trustedTypes?.createPolicy?.("highlightedCode", _highlighter) ||
+    _highlighter;
 
   setInterval(() => {
     for (const comment of comments!.querySelectorAll(
