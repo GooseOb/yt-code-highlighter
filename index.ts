@@ -32,8 +32,9 @@ untilAppear(() => document.getElementById("comments")).then((comments) => {
     fetch("https://cdn.jsdelivr.net/npm/highlight.js/styles/atom-one-dark.css")
       .then((r) => r.text())
       .then((cssText) => {
-        document.head.appendChild(document.createElement("style")).innerHTML =
-          cssText;
+        const style = document.createElement("style");
+        style.innerHTML = cssText;
+        document.head.appendChild(style);
       });
   };
 
