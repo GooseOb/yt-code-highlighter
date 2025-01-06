@@ -1,10 +1,9 @@
-import type { BuildConfigs } from "bun-build-userscript";
+import { UserScriptConfig, type BuildConfigs } from "bun-build-userscript";
 
-module.exports = {
-  bun: {
-    naming: "dist/index.js",
-  },
-  userscript: {
-    logErrors: !process.argv.includes("--build"),
-  },
-} satisfies BuildConfigs;
+export const userscript = new UserScriptConfig({
+  logErrors: !process.argv.includes("--build"),
+});
+
+export const bun: BuildConfigs["bun"] = {
+  naming: "dist/index.js",
+};
