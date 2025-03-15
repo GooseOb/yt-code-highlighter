@@ -43,7 +43,7 @@ untilAppear(() => document.getElementById("comments")).then((comments) => {
       code.replace(
         /```(\S+)\n(.+?)```/gs,
         (_$0, $1, $2) =>
-          `<code>\`\`\`${$1}\n${hljs.highlight($2, { language: $1 }).value}\`\`\`</code>`,
+          `<code>\`\`\`${$1}\n${($1 ? hljs.highlight($2, { language: $1 }) : hljs.highlightAuto($2)).value}\`\`\`</code>`,
       ),
   };
 
