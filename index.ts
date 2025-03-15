@@ -68,4 +68,8 @@ untilAppear(() => document.getElementById("comments")).then((comments) => {
       }
     }
   }, 3000);
+
+  document.addEventListener("yt-navigate-finish", () => {
+    visitedComments.clear();
+  });
 });
